@@ -17,5 +17,12 @@
     "devDependencies": {
         "@babel/core": "^7.20.0"
     },
-    "private": true
+    "private": true,
+    "prettier": {
+        "useTabs": false,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "all",
+        "printWidth": 120
+    }
 }
