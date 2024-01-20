@@ -21,7 +21,14 @@ function ExpenseForm() {
                     onChangeText: () => {},
                 }}
             />
-            <Input label="Description" textInputConfig={{}} />
+            <Input
+                label="Description"
+                textInputConfig={{
+                    multiline: true,
+                    // autoCorrect: false, // default is true
+                    // autoCapitalize: 'none', // default is 'sentences'
+                }}
+            />
         </View>
     );
 }
