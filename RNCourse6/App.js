@@ -7,10 +7,11 @@ import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import { Colors } from './constants/styles';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import IconButton from './components/ui/IconButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
+import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -75,10 +76,20 @@ function Root() {
         fetchToken();
     }, []);
 
+    const onLayoutRootView = useCallback(async () => {
+        if (!isTryingLogin) {
+            await SplashScreen.hideAsync();
+        }
+    }, [isTryingLogin]);
+
     if (isTryingLogin) {
-        return <AppLoading />;
+        return null;
     }
-    return <Navigation />;
+    return (
+        <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+            <Navigation />
+        </View>
+    );
 }
 
 export default function App() {
