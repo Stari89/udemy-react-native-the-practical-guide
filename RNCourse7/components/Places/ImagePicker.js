@@ -10,7 +10,10 @@ function ImagePicker() {
     const [cameraPermissionInformation, requestPermission] = useCameraPermissions();
 
     async function verifyPermissions() {
-        if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
+        if (
+            cameraPermissionInformation.status === PermissionStatus.UNDETERMINED ||
+            (cameraPermissionInformation.status === PermissionStatus.DENIED && cameraPermissionInformation.canAskAgain)
+        ) {
             const permissionResponse = await requestPermission();
             return permissionResponse.granted;
         }
