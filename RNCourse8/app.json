@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "RNCourse8",
+    "slug": "RNCourse8",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
