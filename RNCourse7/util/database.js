@@ -35,7 +35,6 @@ export function insertPlace(place) {
                 `INSERT INTO places (title, imageUri, address, lat, lng) VALUES (?, ?, ?, ?, ?)`,
                 [title, imageUri, address, location.lat, location.lng],
                 (_, result) => {
-                    console.log(result);
                     resolve(result);
                 },
                 (_, error) => {
