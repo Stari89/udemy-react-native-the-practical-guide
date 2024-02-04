@@ -15,6 +15,12 @@ Notifications.setNotificationHandler({
 
 export default function App() {
     useEffect(() => {
+        Notifications.getExpoPushTokenAsync().then((pushTokenData) => {
+            console.log(pushTokenData);
+        });
+    }, []);
+
+    useEffect(() => {
         (async () => {
             const { status } = await Notifications.requestPermissionsAsync();
             if (status !== 'granted') {
