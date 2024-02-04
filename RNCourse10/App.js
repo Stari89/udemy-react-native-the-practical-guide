@@ -21,6 +21,16 @@ export default function App() {
                 alert('Permission to show notifications has not been granted.');
             }
         })();
+
+        const subscription = Notifications.addNotificationResponseReceivedListener((notification) => {
+            console.log('NOTIFICATION RECEIVED');
+            console.log(notification);
+            const userName = notification.notification.request.content.data.userName;
+            console.log(userName);
+        });
+        return () => {
+            subscription.remove();
+        };
     }, []);
 
     function scheduleNotificationHandler() {
