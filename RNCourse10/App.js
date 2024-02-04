@@ -1,8 +1,28 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, View } from 'react-native';
 import * as Notifications from 'expo-notifications';
 
+Notifications.setNotificationHandler({
+    handleNotification: async () => {
+        return {
+            shouldPlaySound: true,
+            shouldSetBadge: false,
+            shouldShowAlert: true,
+        };
+    },
+});
+
 export default function App() {
+    useEffect(() => {
+        (async () => {
+            const { status } = await Notifications.requestPermissionsAsync();
+            if (status !== 'granted') {
+                alert('Permission to show notifications has not been granted.');
+            }
+        })();
+    }, []);
+
     function scheduleNotificationHandler() {
         Notifications.scheduleNotificationAsync({
             content: {
